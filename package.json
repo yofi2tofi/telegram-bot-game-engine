@@ -1,0 +1,19 @@
+{
+  "name": "telegram-game",
+  "version": "0.0.1",
+  "description": "Make russia great again",
+  "main": "main.js",
+  "scripts": {
+    "test": "test "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yofi2tofi/hippy-creeepe.git"
+  },
+  "author": "yofi2tofi@gmail.com",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/yofi2tofi/hippy-creeepe/issues"
+  },
+  "homepage": "https://github.com/yofi2tofi/hippy-creeepe#readme"
+}
