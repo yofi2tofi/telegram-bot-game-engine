@@ -4,6 +4,7 @@
   "description": "Make russia great again",
   "main": "main.js",
   "scripts": {
+    "start": "node ./src/bot.js",
     "test": "test "
   },
   "repository": {
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/yofi2tofi/hippy-creeepe/issues"
   },
-  "homepage": "https://github.com/yofi2tofi/hippy-creeepe#readme"
+  "homepage": "https://github.com/yofi2tofi/hippy-creeepe#readme",
+  "devDependencies": {
+    "telegraf": "^3.21.1"
+  },
+  "dependencies": {
+    "firebase-admin": "^5.12.1",
+    "telegraf-session-firebase": "0.0.1"
+  }
 }
