@@ -11,7 +11,7 @@ const router = {
 		'Нефтянные насосы': 'oilPump',
 		'Электростанции': 'powerPlant',
 		'Статистика': 'statistics',
-		'Задания': 'tasks',
+		'Задания': 'task',
 		'Рефераллы': 'referrals'
 	},
 	bank: {

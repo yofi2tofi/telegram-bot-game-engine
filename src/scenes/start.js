@@ -9,17 +9,22 @@ const startMarkup = require('../markups/start.markup');
 const router = require('../bot.router');
 const database = require('../bot.db').users;
 
+const initModel = require('../models/init.model');
+
 const start = new Scene('start');
 
-start.enter( async ({ reply, message: { from : { id } } }) => {
+start.enter( async ({ scene, reply, message: { from : { id } } }) => {
+	let user;
 
-	let isHasChild = await database.once('value').then((snapshot) => snapshot.hasChild(`${id}`) );
+	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
 
-	if ( !isHasChild ){
-	  await database.child(id).set({ time: new Date().getTime() }); //TODO: в set модель начальный данных
+	if ( !user ) {
+	  await database.child(id).set( new initModel() );
+	  return scene.enter('learning');
 	}
 
-	return reply( texts.start, Extra.markup( startMarkup ) ); // TODO: на место текста вступительный текст
+	//TODO: добавить с инлайн кнопками первый ответ "доска объявлений"
+	return reply( texts.start, Extra.markup( startMarkup ) );	
 });
 
 for (let key in router.start) {

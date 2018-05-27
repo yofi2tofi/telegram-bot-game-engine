@@ -10,6 +10,7 @@ const env    = require('../environment/environment');
 const scenes = require('./bot.scenes');
 const commands = require('./bot.commands');
 const listens = require('./bot.listens');
+const actions = require('./bot.actions');
 const database = require('./bot.db').sessions;
 
 const bot = new Telegraf(env.BOT_TOKEN);
@@ -28,5 +29,6 @@ bot.use(stage.middleware());
  */
 commands(bot);
 listens(bot);
+actions(bot);
 
 bot.startPolling();
