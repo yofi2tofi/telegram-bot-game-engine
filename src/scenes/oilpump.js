@@ -2,6 +2,7 @@ const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
 const Extra = require('telegraf/extra');
 const { enter, leave } = Stage;
+const { match } = require('telegraf-i18n');
 
 const texts = require('../texts/texts.json');
 
@@ -120,11 +121,10 @@ oilPump.action('sendOilToStorage', async ({ answerCbQuery, update: { callback_qu
 });
 
 for (let key in router.profile) {
-	const regExp = new RegExp(key, 'ig');
-	oilPump.hears( regExp , enter(`${router.profile[key]}`));
+	oilPump.hears( match(router.profile[key]) , enter(`${router.profile[key]}`));
 }
 
-oilPump.hears(/Назад/gi, enter('start'));
+oilPump.hears(match('back'), enter('start'));
 
 module.exports = oilPump;
 

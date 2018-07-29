@@ -2,6 +2,7 @@ const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
 const Extra = require('telegraf/extra');
 const { enter, leave } = Stage;
+const { match } = require('telegraf-i18n');
 
 const texts = require('../texts/texts.json');
 
@@ -13,7 +14,7 @@ const initModel = require('../models/init.model');
 
 const start = new Scene('start');
 
-start.enter( async ({ scene, reply, message: { from : { id } } }) => {
+start.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => {
 	let user;
 
 	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
@@ -24,12 +25,11 @@ start.enter( async ({ scene, reply, message: { from : { id } } }) => {
 	}
 
 	//TODO: добавить с инлайн кнопками первый ответ "доска объявлений"
-	return reply( texts.start, Extra.markup( startMarkup ) );	
+	return reply( texts.start, Extra.markup( startMarkup(i18n) ) );	
 });
 
 for (let key in router.start) {
-	const regExp = new RegExp(key, 'ig');
-	start.hears( regExp , enter(`${router.start[key]}`));
+	start.hears( match(router.start[key]) , enter(`${router.start[key]}`));
 }
 
 module.exports = start;

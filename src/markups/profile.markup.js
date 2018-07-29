@@ -2,19 +2,21 @@ const Markup = require('telegraf/markup');
 
 const router = require('../bot.router');
 
-let routes = [];
+function profileMarkup(i18n) {
+	let routes = [];
+	for (let key in router.profile) {
+		routes.push(i18n.t(router.profile[key]));
+	}
 
-for (let key in router.profile)
-	routes.push(key);
-
-const profileMarkup = Markup
-											.keyboard(
-												[...routes, 'Назад'], 
-												{
-									     		wrap: (btn, index, currentRow) => currentRow.length === 2
-									    	}
-									    )
-									    .oneTime()
-   										.resize();
+	return Markup
+		.keyboard(
+			[...routes, i18n.t('back')], 
+			{
+				wrap: (btn, index, currentRow) => currentRow.length === 2
+			}
+		)
+		.oneTime()
+		.resize();
+}
 
 module.exports = profileMarkup;

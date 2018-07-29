@@ -1,0 +1,17 @@
+back: Назад
+greeting: Русский язык установлен
+Rate limit: Превышенно максимальное количество запросов
+# router - start
+profile: Моя компания
+bank: Банк
+market: Рынок
+stock: Биржа
+games: Игры
+more: Дополнительно
+
+# router - profile
+oilPump: Нефтянные насосы
+powerPlant: Электростанции
+statistics: Статистика
+task: Задания
+referrals: Рефераллы

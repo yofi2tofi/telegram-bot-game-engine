@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node ./src/bot.js",
+    "dev": "nodemon ./src/bot.js",
     "test": "test "
   },
   "repository": {
@@ -18,10 +19,14 @@
   },
   "homepage": "https://github.com/yofi2tofi/hippy-creeepe#readme",
   "devDependencies": {
+    "nodemon": "^1.18.3",
     "telegraf": "^3.21.1"
   },
   "dependencies": {
     "firebase-admin": "^5.12.1",
+    "https-proxy-agent": "^2.2.1",
+    "telegraf-i18n": "^6.1.1",
+    "telegraf-ratelimit": "^2.0.0",
     "telegraf-session-firebase": "0.0.1"
   }
 }

@@ -1,0 +1,17 @@
+back: Back
+greeting: English lang has setted
+Rate limit: Rate limit exceeded
+# router - start
+profile: Own company
+bank: Bank
+market: Market
+stock: Stocks
+games: Games
+more: More
+
+# router - profile
+oilPump: oil Pumps
+powerPlant: PowerPlants
+statistics: Statistics
+task: tasks
+referrals: referrals

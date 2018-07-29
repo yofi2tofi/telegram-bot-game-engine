@@ -2,6 +2,7 @@ const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
 const Extra = require('telegraf/extra');
 const { enter, leave } = Stage;
+const { match } = require('telegraf-i18n');
 
 const taskText = require('../texts/tasks.json');
 
@@ -42,6 +43,6 @@ for (let key in router.profile) {
 	task.hears( regExp , enter(`${router.profile[key]}`));
 }
 
-task.hears(/Назад/gi, enter('start'));
+task.hears(match('back'), enter('start'));
 
 module.exports = task;
