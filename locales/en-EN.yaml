@@ -1,5 +1,11 @@
 back: Back
+buy: Buy
+buySuccess: |
+  ${name}\n\nSuccess bougth
 greeting: English lang has setted
+notEnoughMoney: |
+  You do not have enough money\nYou are lacking ${amount} ${currency}
+
 Rate limit: Rate limit exceeded
 # router - start
 profile: Own company
@@ -15,3 +21,16 @@ powerPlant: PowerPlants
 statistics: Statistics
 task: tasks
 referrals: referrals
+
+# oilPump
+oilText: ⛽️ OilPumps\n\nHere you can buy various oil pumps. Petroleum pumps produce 🛢 barrels of oil, which you can later send to the warehouse and sell on the market for 🌑 OilCoin and 💰 gold, which later can be withdrawn as real money!:\n\n
+oilPumpStatistics: |
+  ${name}\nQuanity: ${countPumps}\nGain: ${extractBarrels} 🛢 oil's barrels\n\n
+oilPumpStorage: |
+  📦 Barrels of oil in stock: ${oilBarrels}
+boyOilPumps: Buy oil pumps
+sendOilToStorage: Send oil to storage
+gainOilPerHour: |
+  ${name}\n\nObtains ${gain} 🛢 barrels of oil per hour\nPrice: ${price} ${currency}
+sendOilBarrelsToStorage: |
+  ${oilBarrels} barrels sent to the storage

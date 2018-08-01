@@ -12,20 +12,26 @@ const database = require('../bot.db').users;
 
 const oilPump = new Scene('oilPump');
 
-oilPump.enter( async ({ scene, reply, message: { from : { id } } }) => {
+oilPump.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => {
 	let user, text;
 
-	text = texts.oil;
+	text = i18n.t('oilText');
 
 	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
 
 	user.oilPumps.forEach( ({ name, countPumps, point, lastHarvest }) => {
 		let extractBarrels = getTotalHarvest(countPumps, point, lastHarvest);
 
-		text += `${name}\nКоличество: ${countPumps}\nДобыто: ${extractBarrels} 🛢 баррелей нефти\n\n`;
+		text += i18n.t('oilPumpStatistics', {
+			name: name,
+			countPumps: countPumps,
+			extractBarrels: extractBarrels
+		});
 	});
 
-	text += `📦 Баррелей нефти на складе: ${user.storage.oilBarrels}`;
+	text += i18n.t('oilPumpStorage', {
+		oilBarrels: user.storage.oilBarrels
+	});
 
 	// TODO: Добавить информацию о 30% которые уходят для держателя акций
 
@@ -33,13 +39,13 @@ oilPump.enter( async ({ scene, reply, message: { from : { id } } }) => {
 		text,
 		Extra.HTML().markup((m) =>
 	    m.inlineKeyboard([
-	      [ m.callbackButton('Купить насосы', 'buyOilPumps') ],
-	      [ m.callbackButton('Отправить ресурсы на склад', 'sendOilToStorage') ]
-	    ])) 
+	      [ m.callbackButton(i18n.t('boyOilPumps'), 'buyOilPumps') ],
+	      [ m.callbackButton(i18n.t('sendOilToStorage'), 'sendOilToStorage') ]
+	    ]))
 	);
 });
 
-oilPump.action('buyOilPumps', async ({ reply, update: { callback_query: { from: { id }}} }) => {
+oilPump.action('buyOilPumps', async ({ i18n, reply, update: { callback_query: { from: { id }}} }) => {
 	let user;
 
 	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
@@ -47,13 +53,18 @@ oilPump.action('buyOilPumps', async ({ reply, update: { callback_query: { from: 
 	user.oilPumps.forEach( ({ name, price, gain, currency, id }) => {
 		let text;
 
-		text = `${name}\n\nДобывает ${gain} 🛢 баррелей нефти в час\nЦена: ${price} ${currency}`;
+		text = i18n.t('gainOilPerHour', {
+			name: name,
+			gain: gain,
+			price: price,
+			currency: currency
+		});
 
 		reply(
 			text,
 			Extra.HTML().markup((m) =>
 		    m.inlineKeyboard([
-		      [ m.callbackButton('Купить', `buyOilPump::${id}`) ]
+		      [ m.callbackButton(i18n.t('buy'), `buyOilPump::${id}`) ]
 		    ])) 
 		)
 	});
@@ -61,7 +72,7 @@ oilPump.action('buyOilPumps', async ({ reply, update: { callback_query: { from: 
 	return;
 });
 
-oilPump.action(/buyOilPump/, async ({ answerCbQuery, update: { callback_query: { from: { id }, data: data }} }) => {
+oilPump.action(/buyOilPump/, async ({ i18n, answerCbQuery, update: { callback_query: { from: { id }, data: data }} }) => {
 	let user, oilPump,
 			oilPumpId = Math.abs(data.split('::')[1]);
 
@@ -85,15 +96,20 @@ oilPump.action(/buyOilPump/, async ({ answerCbQuery, update: { callback_query: {
 		await database.child(`${id}/currencies/oilCoin`).update({ amount: difference });
 		await database.child(`${id}/oilPumps/${oilPumpId - 1}`).update(updateOilPumps);
 
-		return answerCbQuery(`${name}\n\nУспешно купленно`, true);
+		return answerCbQuery(i18n.t('buySuccess', {
+			name: name
+		}), true);
 	}
 
 	function errorPurchaise() {
-		return answerCbQuery(`У Вас недостаточно средств\nВам не хватает ${price - user.currencies.oilCoin.amount} ${currency}`, true);
+		return answerCbQuery(i18n.t('notEnoughMoney', {
+			amount: price - user.currencies.oilCoin.amount,
+			currency: currency
+		}), true);
 	}
 });
 
-oilPump.action('sendOilToStorage', async ({ answerCbQuery, update: { callback_query: { from: { id }, data: data }} }) => {
+oilPump.action('sendOilToStorage', async ({ i18n, answerCbQuery, update: { callback_query: { from: { id }, data: data }} }) => {
 	let user, text, 
 			oilBarrels = 0;
 
@@ -116,7 +132,9 @@ oilPump.action('sendOilToStorage', async ({ answerCbQuery, update: { callback_qu
 	promise.then( async () => {
 		await database.child(`${id}/storage`).update({ oilBarrels: user.storage.oilBarrels + oilBarrels });
 
-		return answerCbQuery(`${oilBarrels} баррелей отправленно на склад`, true);
+		return answerCbQuery(i18n.t('sendOilBarrelsToStorage', {
+			oilBarrels
+		}), true);
 	});
 });
 
