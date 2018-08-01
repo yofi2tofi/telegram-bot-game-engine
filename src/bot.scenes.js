@@ -5,6 +5,7 @@ const start = require('./scenes/start');
 const profile = require('./scenes/profile');
 const oilpump = require('./scenes/oilpump');
 const learning = require('./scenes/learning');
+const statistics = require('./scenes/statistics');
 
 module.exports = (stage) => {
 	stage.register(task);
@@ -12,4 +13,5 @@ module.exports = (stage) => {
 	stage.register(profile);
 	stage.register(oilpump);
 	stage.register(learning);
+	stage.register(statistics);
 }

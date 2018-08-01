@@ -24,6 +24,25 @@ taskSuccess: task is completed
 taskError: task isn't completed
 company name: Enter company name
 
+#statistics
+statisticsUser: Statistics your company\n\n
+statisticsCompanyLabel: |
+  📝 Label your company:\n${label}\n\n
+statisticsCompanyAge: |
+  📅 Age of company (daily):\n${age}\n\n
+statisticsCompanyGain: |
+  At the moment, your plants produce:\n${oilGain} 🛢 barrels per hour\n${energyGain} 🔋 kilowatt of energy per hour\n\n
+statisticsCompanyGainOil: |
+  🛢 Total produced barrels of oil:\n${oilBarrels}\n\n
+statisticsCompanyGainEnergy: |
+  🔋 In total, a kilowatt of energy was produced:\n${energy}\n\n
+statisticsCompanyGainRefs: |
+  👤 Companies registered for your referral link:\n${refs}\n\n
+statisticsCompanyTaskComplete: |
+  ✅ Completed tasks:\n${tasks}\n\n
+statisticsCompanyOwn: |
+  📑 The share of your company that belongs to you:\n${parts}%\n
+
 # router - start
 profile: Own company
 bank: Bank

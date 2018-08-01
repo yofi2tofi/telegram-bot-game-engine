@@ -20,7 +20,7 @@ start.enter( async ({ i18n, scene, reply, message: { from: { id } } }) => {
 	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
 
 	if ( !user ) {
-	  await database.child(id).set( new initModel() );
+	  await database.child(id).set( new initModel(id) );
 	  return scene.enter('learning');
 	}
 
