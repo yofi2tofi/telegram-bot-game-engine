@@ -8,39 +8,39 @@ const text = require('../texts/learning.json');
 
 const learning = new Scene('learning');
 
-learning.enter( ({ reply }) => reply( 
-	welcome,
+learning.enter( ({ i18n, reply }) => reply( 
+	i18n.t('welcome'),
 	Extra.markup((markup) => markup.resize().keyboard(['🗞', '📰']) )
 ));
 
 learning.hears('📰', enter('start'));
 
-learning.hears('🗞', ( ({ reply }) => reply(
-		text.one, 
+learning.hears('🗞', ( ({ i18n, reply }) => reply(
+		i18n.t('learnStepOne'),
 		Extra.markup((markup) => markup.resize().keyboard(['🎓']) )
 	) 
 ));
 
-learning.hears('🎓', ( ({ reply }) => reply(
-		text.two, 
+learning.hears('🎓', ( ({ i18n, reply }) => reply(
+		i18n.t('learnStepTwo'),
 		Extra.markup((markup) => markup.resize().keyboard(['📃']) )
 	) 
 ));
 
-learning.hears('📃', ( ({ reply }) => reply(
-		text.three, 
+learning.hears('📃', ( ({ i18n, reply }) => reply(
+		i18n.t('learnStepThree'),
 		Extra.markup((markup) => markup.resize().keyboard(['📄']) )
 	) 
 ));
 
-learning.hears('📄', ( ({ reply }) => reply(
-		text.four, 
+learning.hears('📄', ( ({ i18n, reply }) => reply(
+		i18n.t('learnStepFour'),
 		Extra.markup((markup) => markup.resize().keyboard(['🗒']) )
 	) 
 ));
 
-learning.hears('🗒', ( ({ reply }) => reply(
-		text.five, 
+learning.hears('🗒', ( ({ i18n, reply }) => reply(
+		i18n.t('learnStepFive'),
 		Extra.markup((markup) => markup.resize().keyboard(['🏁']) )
 	) 
 ));

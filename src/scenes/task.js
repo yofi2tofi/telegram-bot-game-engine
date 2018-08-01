@@ -11,21 +11,21 @@ const database = require('../bot.db').users;
 
 const task = new Scene('task');
 
-task.enter( async ({ scene, reply, message: { from : { id } } }) => {
+task.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => {
 	let user;
 
 	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
 
 	return reply( 
-		taskText[`level${user.level}`].text, 
+		i18n.t(taskText[`level${user.level}`].text),
 		Extra.HTML().markup((m) =>
 	    m.inlineKeyboard([
-	      m.callbackButton('🖋 Проверить задание', 'checkTask')
-	    ])) 
+	      m.callbackButton(i18n.t('checkTask'), 'checkTask')
+	    ]))
 	);
 });
 
-task.action('checkTask', async ({ answerCbQuery, update: { callback_query: { from: { id }}} }) => {
+task.action('checkTask', async ({ i18n, answerCbQuery, update: { callback_query: { from: { id }}} }) => {
 	let user, field;
 
 	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
@@ -33,14 +33,13 @@ task.action('checkTask', async ({ answerCbQuery, update: { callback_query: { fro
 	field = taskText[`level${user.level}`].check;
 
 	if ( !!user[field] )
-		return answerCbQuery(taskText[`level${user.level}`].success, true);
+		return answerCbQuery(i18n.t(taskText[`level${user.level}`].success), true);
 
-	return answerCbQuery(`Задание еще не выполненно`, true);
+	return answerCbQuery(i18n.t('taskError'), true);
 });
 
 for (let key in router.profile) {
-	const regExp = new RegExp(key, 'ig');
-	task.hears( regExp , enter(`${router.profile[key]}`));
+	task.hears( match(router.profile[key]) , enter(`${router.profile[key]}`));
 }
 
 task.hears(match('back'), enter('start'));

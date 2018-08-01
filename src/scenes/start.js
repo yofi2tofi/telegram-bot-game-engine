@@ -13,8 +13,8 @@ const database = require('../bot.db').users;
 const initModel = require('../models/init.model');
 
 const start = new Scene('start');
-
-start.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => {
+//
+start.enter( async ({ i18n, scene, reply, message: { from: { id } } }) => {
 	let user;
 
 	await database.once('value').then((snapshot) => user = snapshot.child(id).val() );
@@ -25,7 +25,7 @@ start.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => {
 	}
 
 	//TODO: добавить с инлайн кнопками первый ответ "доска объявлений"
-	return reply( texts.start, Extra.markup( startMarkup(i18n) ) );	
+	return reply( i18n.t('start'), Extra.markup( startMarkup(i18n) ) );	
 });
 
 for (let key in router.start) {
