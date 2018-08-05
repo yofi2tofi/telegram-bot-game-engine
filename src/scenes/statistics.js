@@ -12,6 +12,7 @@ const statistics = new Scene('statistics');
 
 statistics.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => {
 	let user, oilObtain, energyObtain, create,
+	stocks = 0,
 	text = '';
 
   user = await database.once('value').then((snapshot) => snapshot.child(id).val() );
@@ -20,6 +21,12 @@ statistics.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => 
 	energyObtain = user.energyPumps ? user.energyPumps.reduce((prev, key) => prev + +key.point, 0): 0;
 
 	create = Math.round((new Date().getTime() - user.created) / (1000 * 60 * 60 * 24));
+
+	user.holders.forEach((holder) => {
+		if (holder.holder === id) {
+			stocks = holder.part;
+		}
+	});
 
 	text += i18n.t('statisticsUser');
 	text += i18n.t('statisticsCompanyLabel', {
@@ -45,7 +52,7 @@ statistics.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => 
 		tasks: user.tasks
 	});
 	text += i18n.t('statisticsCompanyOwn', {
-		parts: user.system.stocks
+		parts: stocks
 	});
 
 	reply(

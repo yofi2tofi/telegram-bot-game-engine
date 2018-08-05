@@ -10,6 +10,8 @@ const { enter, leave } = Stage;
 
 const firebaseSession = require('telegraf-session-firebase');
 
+const termGuard = require('./middlewares/term.guard');
+
 const env    = require('../environment/environment');
 const scenes = require('./bot.scenes');
 const commands = require('./bot.commands');
@@ -33,8 +35,13 @@ const limitConfig = {
 const bot = new Telegraf(env.BOT_TOKEN);
 
 bot.use(firebaseSession(database));
-bot.use(i18n.middleware())
-bot.use(rateLimit(limitConfig))
+bot.use(i18n.middleware());
+bot.use(rateLimit(limitConfig));
+
+/**
+ * Глобальный слушатель, между мидлвером и слушателями, действиями и сценами
+ */
+bot.on('message', termGuard());
 
 /**
  * Создает сцены и добавляет их
@@ -49,5 +56,9 @@ bot.use(stage.middleware());
 commands(bot, i18n);
 listens(bot);
 actions(bot);
+
+bot.catch((err) => {
+  console.log('Ooops', err)
+})
 
 bot.startPolling();

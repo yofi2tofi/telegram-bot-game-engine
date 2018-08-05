@@ -21,12 +21,20 @@ class InitModelClass {
 		
 		this.level = 0;
 		this.system = {
+			isTerm: false,
 			isLearned: false,
+			selectLanguage: false,
 			refferer: null,
 			refferals: [],
-			refUrl: generateHashed(id),
-			stocks: 50
+			refUrl: generateHashed(id)
 		};
+
+		this.holders = [
+			{
+				holder: id,
+				part: 50
+			}
+		];
 
 		this.tasks = 0;
 
