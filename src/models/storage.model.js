@@ -1,7 +1,6 @@
 class StorageClass {
 	constructor() {
 		this.oilBarrels = 0;
-		this.energy = 0;
 	}
 }
 

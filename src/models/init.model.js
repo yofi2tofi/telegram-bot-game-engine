@@ -14,8 +14,7 @@ class InitModelClass {
 		this.currencies = new Currencies();
 
 		this.oilPumps = [new LevelOne(), new LevelTwo(), new LevelThree(), new LevelFour(), new LevelFive(), new LevelSix() ];
-		this.energyPumps = [];
-
+		
 		this.storage = new Storage();
 		this.label = '';
 		

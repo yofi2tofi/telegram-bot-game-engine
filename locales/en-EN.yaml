@@ -34,23 +34,21 @@ taskError: task isn't completed
 company name: Enter company name
 
 #statistics
-statisticsUser: Statistics your company\n\n
+statisticsUser: Statistics your company\n
 statisticsCompanyLabel: |
-  📝 Label your company:\n${label}\n\n
+  📝 Label your company: ${label}
 statisticsCompanyAge: |
-  📅 Age of company (daily):\n${age}\n\n
+  📅 Age of company (daily): ${age}
 statisticsCompanyGain: |
-  At the moment, your plants produce:\n${oilGain} 🛢 barrels per hour\n${energyGain} 🔋 kilowatt of energy per hour\n\n
+  At the moment, your plants produce:\n${oilGain} 🛢 barrels per hour
 statisticsCompanyGainOil: |
-  🛢 Total produced barrels of oil:\n${oilBarrels}\n\n
-statisticsCompanyGainEnergy: |
-  🔋 In total, a kilowatt of energy was produced:\n${energy}\n\n
+  🛢 Total produced barrels of oil: ${oilBarrels}
 statisticsCompanyGainRefs: |
-  👤 Companies registered for your referral link:\n${refs}\n\n
+  👤 Companies registered for your referral link: ${refs}
 statisticsCompanyTaskComplete: |
-  ✅ Completed tasks:\n${tasks}\n\n
+  ✅ Completed tasks: ${tasks}
 statisticsCompanyOwn: |
-  📑 The share of your company that belongs to you:\n${parts}%\n
+  📑 The share of your company that belongs to you: ${parts}%
 
 #referrals
 referralsLink: |

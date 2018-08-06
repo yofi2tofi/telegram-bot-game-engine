@@ -80,20 +80,20 @@ oilPump.action(/buyOilPump/, async ({ i18n, answerCbQuery, update: { callback_qu
 
 	let { name, countPumps, price, point, gain, currency } = user.oilPumps[oilPumpId - 1];
 
-	if ( user.currencies.oilCoin.amount >= price )
+	if ( user.currencies.gold.amount >= price )
 		return successPurchaise();
-	else if ( user.currencies.oilCoin.amount < price )
+	else if ( user.currencies.gold.amount < price )
 		return errorPurchaise();
 
 	async function successPurchaise() {
-		let difference = user.currencies.oilCoin.amount - price;
+		let difference = user.currencies.gold.amount - price;
 		let updateOilPumps = {
 			countPumps: countPumps += 1,
 			lastHarvest: new Date().getTime(),
 			point: point += gain
 		};
 
-		await database.child(`${id}/currencies/oilCoin`).update({ amount: difference });
+		await database.child(`${id}/currencies/gold`).update({ amount: difference });
 		await database.child(`${id}/oilPumps/${oilPumpId - 1}`).update(updateOilPumps);
 
 		return answerCbQuery(i18n.t('buySuccess', {
@@ -103,7 +103,7 @@ oilPump.action(/buyOilPump/, async ({ i18n, answerCbQuery, update: { callback_qu
 
 	function errorPurchaise() {
 		return answerCbQuery(i18n.t('notEnoughMoney', {
-			amount: price - user.currencies.oilCoin.amount,
+			amount: price - user.currencies.gold.amount,
 			currency: currency
 		}), true);
 	}

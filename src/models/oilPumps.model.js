@@ -6,7 +6,7 @@ class LevelOneClass {
 		this.price = 100;
 		this.gain = 16;
 		this.lastHarvest = 0;
-		this.currency = '🌑 OilCoin';
+		this.currency = '💰 Gold';
 		this.name = '⛽️1️⃣ Деревянный ручной насос';
 	}
 }
@@ -19,7 +19,7 @@ class LevelTwoClass {
 		this.price = 1000;
 		this.gain = 184;
 		this.lastHarvest = 0;
-		this.currency = '🌑 OilCoin';
+		this.currency = '💰 Gold';
 		this.name = '⛽️2️⃣ Металлический насос';
 	}
 }
@@ -32,7 +32,7 @@ class LevelThreeClass {
 		this.price = 6000;
 		this.gain = 1249;
 		this.lastHarvest = 0;
-		this.currency = '🌑 OilCoin';
+		this.currency = '💰 Gold';
 		this.name = '⛽️3️⃣ Фабричный  насос';
 	}
 }
@@ -45,7 +45,7 @@ class LevelFourClass {
 		this.price = 18000;
 		this.gain = 4463;
 		this.lastHarvest = 0;
-		this.currency = '🌑 OilCoin';
+		this.currency = '💰 Gold';
 		this.name = '⛽️4️⃣ Профессиональный насос';
 	}
 }
@@ -58,7 +58,7 @@ class LevelFiveClass {
 		this.price = 45000;
 		this.gain = 13020;
 		this.lastHarvest = 0;
-		this.currency = '🌑 OilCoin';
+		this.currency = '💰 Gold';
 		this.name ='⛽️5️⃣ Насос с ионным двигателем';
 	}
 }
@@ -71,7 +71,7 @@ class LevelSixClass {
 		this.price = 90000;
 		this.gain = 31250;
 		this.lastHarvest = 0;
-		this.currency = '🌑 OilCoin';
+		this.currency = '💰 Gold';
 		this.name ='⛽️6️⃣ Насос на квантовой тяге';
 	}
 }

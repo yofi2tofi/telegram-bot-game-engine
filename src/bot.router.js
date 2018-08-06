@@ -9,14 +9,12 @@ const router = {
 	},
 	profile: {
 		'Нефтянные насосы': 'oilPump',
-		'Электростанции': 'powerPlant',
 		'Статистика': 'statistics',
 		'Задания': 'task',
 		'Рефераллы': 'referrals'
 	},
 	bank: {
 		'Пополнить баланс': 'topUpTheBalance',
-		'Обмен валюты': 'currencyExchange',
 		'Вывести баланс': 'withdraw'
 	},
 	market: {
@@ -27,8 +25,7 @@ const router = {
 		'Поиск компаний': 'searchCompany'
 	},
 	stock: {
-		'Продать нефть': 'sellOil',
-		'Продать энергию': 'sellEnergy'
+		'Продать нефть': 'sellOil'
 	},
 	games: {
 		'Получить бонус': 'dailyBonus'

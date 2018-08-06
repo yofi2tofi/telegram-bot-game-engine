@@ -18,7 +18,6 @@ statistics.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => 
   user = await database.once('value').then((snapshot) => snapshot.child(id).val() );
   
 	oilObtain = user.oilPumps ? user.oilPumps.reduce((prev, key) => prev + +key.point, 0) : 0;
-	energyObtain = user.energyPumps ? user.energyPumps.reduce((prev, key) => prev + +key.point, 0): 0;
 
 	create = Math.round((new Date().getTime() - user.created) / (1000 * 60 * 60 * 24));
 
@@ -36,14 +35,10 @@ statistics.enter( async ({ i18n, scene, reply, message: { from : { id } } }) => 
 		age: create
 	});
 	text += i18n.t('statisticsCompanyGain', {
-		oilGain: oilObtain,
-		energyGain: energyObtain
+		oilGain: oilObtain
 	});
 	text += i18n.t('statisticsCompanyGainOil', {
 		oilBarrels: user.storage.oilBarrels ? user.storage.oilBarrels: 0
-	});
-	text += i18n.t('statisticsCompanyGainEnergy', {
-		energy: user.storage.energy ? user.storage.energy: 0
 	});
 	text += i18n.t('statisticsCompanyGainRefs', {
 		refs: user.system.refferals ? user.system.refferals.length: 0
