@@ -19,6 +19,8 @@ const listens = require('./bot.listens');
 const actions = require('./bot.actions');
 const database = require('./bot.db').sessions;
 
+const cron = require('./bot.cron');
+
 const i18n = new TelegrafI18n({
   defaultLanguage: 'ru',
   useSession: true,
@@ -62,3 +64,5 @@ bot.catch((err) => {
 })
 
 bot.startPolling();
+
+cron();

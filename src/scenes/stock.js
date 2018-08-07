@@ -46,10 +46,10 @@ stock.on('message', async ({ i18n, session, scene, reply, message: { text, from 
 
   await database.child(`${id}/storage`).update({ oilBarrels: user.storage.oilBarrels - text });
   await database.child(`${id}/currencies/gold`).update({
-    amount: user.currencies.gold + Math.round( gold/100 * 70 )
+    amount: +user.currencies.gold.amount + Math.round( gold/100 * 70 )
   });
   await database.child(`${id}/currencies/out`).update({
-    amount: user.currencies.out + Math.round( gold/100 * 30 )
+    amount: +user.currencies.out.amount + Math.round( gold/100 * 30 )
   });
 
   return reply(i18n.t('sellOilSuccess', {

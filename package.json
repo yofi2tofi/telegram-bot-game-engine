@@ -23,6 +23,8 @@
     "telegraf": "^3.21.1"
   },
   "dependencies": {
+    "coinpayments": "github:yofi2tofi/coinpayments#master",
+    "cron": "^1.3.0",
     "firebase-admin": "^5.12.1",
     "https-proxy-agent": "^2.2.1",
     "telegraf-i18n": "^6.1.1",

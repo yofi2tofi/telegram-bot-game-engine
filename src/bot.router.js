@@ -15,7 +15,8 @@ const router = {
 	},
 	bank: {
 		'Пополнить баланс': 'topUpTheBalance',
-		'Вывести баланс': 'withdraw'
+		'Вывести баланс': 'withdraw',
+		'Сделать вклад': 'contibution'
 	},
 	market: {
 		'Акции': 'stocks',

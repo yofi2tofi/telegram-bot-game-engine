@@ -15,6 +15,7 @@ admin.initializeApp({
 const database = admin.database();
 
 module.exports = {
-	sessions: database.ref('sessions'),
-	users: database.ref('users')
+  sessions: database.ref('sessions'),
+  transactions: database.ref('transactions'),
+  users: database.ref('users')
 }

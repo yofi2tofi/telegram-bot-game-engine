@@ -17,6 +17,9 @@ const referrals = require('./scenes/referrals');
 // Market
 const stock = require('./scenes/stock');
 
+// Bank
+const bank = require('./scenes/bank');
+
 module.exports = (stage) => {
 	stage.register(task);
 	stage.register(start);
@@ -29,4 +32,6 @@ module.exports = (stage) => {
 	stage.register(language);
 
 	stage.register(stock);
+
+	stage.register(bank);
 }
